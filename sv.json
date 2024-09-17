@@ -1,0 +1,13 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "CONNECTION_NAME",
+      "Group": "GROUP_TEST",
+      "Host": "quy-test-quy1403a2-0382.e.aivencloud.com",
+      "Port": 14484,
+      "MaintenanceDB": "defaultdb",
+      "Username": "avnadmin",
+      "SSLMode": "require"
+    }
+  }
+}

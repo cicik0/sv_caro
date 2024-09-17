@@ -1,0 +1,36 @@
+datasource db {
+  provider = "postgresql"
+  url      = "postgres://avnadmin:AVNS_AiZ9zUI_rAm3Dcsdltf@quy-test-quy1403a2-0382.e.aivencloud.com:14484/defaultdb?sslmode=require"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  username String  @unique
+  password String
+  token    String? @unique
+  Room     Room?   @relation(fields: [roomId], references: [id])
+  roomId   Int?
+  Move     Move[]
+}
+
+model Room {
+  id      Int    @id @default(autoincrement())
+  name    String @unique
+  players User[]
+  board   String // JSON string representing the board state
+  Move    Move[]
+}
+
+model Move {
+  id       Int  @id @default(autoincrement())
+  roomId   Int
+  playerId Int
+  x        Int
+  y        Int
+  player   User @relation(fields: [playerId], references: [id])
+  room     Room @relation(fields: [roomId], references: [id])
+}
